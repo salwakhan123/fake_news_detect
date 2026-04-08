@@ -3,11 +3,12 @@ import re
 
 app = Flask(__name__)
 
+# Logic for Fake News Detection
 def detect_fake_news(text):
     text = text.lower()
-    # Keywords-based simple logic as per your previous version
+    # Predefined Keywords
     fake_keywords = ['alien', 'ufo', 'conspiracy', 'hoax', 'fake', 'lie', 'scam', 'secret', 'coverup', 'illuminati', 'vaccine chip', '5g danger']
-    real_keywords = ['government', 'official', 'study', 'research', 'launch', 'announce', 'president', 'parliament', 'court', 'university']
+    real_keywords = ['government', 'official', 'study', 'research', 'launch', 'announce', 'president', 'parliament', 'court', 'university', 'isro', 'nasa']
     
     fake_score = sum(1 for word in fake_keywords if word in text)
     real_score = sum(1 for word in real_keywords if word in text)
@@ -34,50 +35,110 @@ def home():
             result_class = "real" if "REAL" in result else "fake" if "FAKE" in result else "suspicious"
             result_html = f"<div class='result {result_class}'>{result}<div class='confidence'>Confidence: {confidence}%</div></div>"
     
-    # CSS braces are now doubled {{ }} to avoid .format() errors
+    # CSS braces are doubled {{ }} because we use .format() at the end
     html = f'''
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>🚀 FAKE NEWS DETECTOR</title>
+    <meta charset="UTF-8">
+    <title>🚀 AI FAKE NEWS DETECTOR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         *{{{{margin:0;padding:0;box-sizing:border-box}}}}
-        body{{{{font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(135deg,#ff6b6b,#4ecdc4);min-height:100vh;padding:20px}}}}
-        .container{{{{max-width:700px;margin:0 auto;background:rgba(255,255,255,0.95);border-radius:25px;padding:40px;box-shadow:0 25px 50px rgba(0,0,0,0.2)}}}}
-        h1{{{{text-align:center;color:#2c3e50;margin-bottom:15px;font-size:2.8em}}}}
-        .subtitle{{{{text-align:center;color:#7f8c8d;margin-bottom:30px;font-size:1.2em}}}}
-        textarea{{{{width:100%;height:160px;padding:25px;border:3px solid #ecf0f1;border-radius:20px;font-size:17px;font-family:inherit;resize:vertical;transition:all 0.3s}}}}
-        textarea:focus{{{{outline:none;border-color:#3498db;box-shadow:0 0 20px rgba(52,152,219,0.3)}}}}
-        .analyze-btn{{{{width:100%;padding:22px;background:linear-gradient(135deg,#3498db,#2980b9);color:white;border:none;border-radius:20px;font-size:20px;font-weight:bold;cursor:pointer;margin:25px 0;transition:all 0.3s;box-shadow:0 10px 30px rgba(52,152,219,0.4)}}}}
-        .analyze-btn:hover{{{{transform:translateY(-3px);box-shadow:0 15px 40px rgba(52,152,219,0.6)}}}}
-        .result{{{{margin:35px 0;padding:30px;border-radius:20px;text-align:center;font-size:32px;font-weight:bold;animation:slideIn 0.5s ease}}}}
-        .real{{{{background:linear-gradient(135deg,#2ecc71,#27ae60);color:white}}}}
-        .fake{{{{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white}}}}
-        .suspicious{{{{background:linear-gradient(135deg,#f39c12,#e67e22);color:white}}}}
-        .confidence{{{{font-size:22px;margin-top:15px;opacity:0.95}}}}
-        .input-section{{{{background:rgba(236,240,241,0.5);padding:25px;border-radius:20px;margin-bottom:25px}}}}
-        .examples{{{{text-align:center;margin-top:40px}}}}
-        .ex-btn{{{{padding:15px 30px;margin:8px;background:#9b59b6;color:white;border:none;border-radius:30px;cursor:pointer;font-size:16px;font-weight:bold;transition:all 0.3s;min-width:180px}}}}
-        @keyframes slideIn{{{{from{{{{opacity:0;transform:translateY(30px)}}}}to{{{{opacity:1;transform:translateY(0)}}}}}}}}
-        @media(max-width:600px){{{{.container{{{{padding:20px;margin:10px}}}}h1{{{{font-size:2em}}}}}}}}
+        
+        body{{{{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Full Background Image with Overlay */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1585829365234-781fdfc4190b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }}}}
+
+        .container{{{{
+            max-width: 750px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }}}}
+
+        h1{{{{color: #2c3e50; font-size: 2.8em; margin-bottom: 10px;}}}}
+        .subtitle{{{{color: #7f8c8d; margin-bottom: 30px; font-size: 1.1em;}}}}
+
+        textarea{{{{
+            width: 100%;
+            height: 150px;
+            padding: 20px;
+            border: 2px solid #dfe6e9;
+            border-radius: 15px;
+            font-size: 16px;
+            resize: none;
+            transition: 0.3s;
+            background: #f9f9f9;
+        }}}}
+
+        textarea:focus{{{{outline: none; border-color: #3498db; background: #fff; box-shadow: 0 0 15px rgba(52,152,219,0.2);}}}}
+
+        .analyze-btn{{{{
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }}}}
+
+        .analyze-btn:hover{{{{transform: translateY(-2px); box-shadow: 0 10px 20px rgba(52,152,219,0.4);}}}}
+
+        .result{{{{margin-top: 30px; padding: 25px; border-radius: 15px; font-size: 28px; font-weight: bold; color: white; animation: slideUp 0.5s ease;}}}}
+        .real{{{{background: linear-gradient(135deg, #2ecc71, #27ae60);}}}}
+        .fake{{{{background: linear-gradient(135deg, #e74c3c, #c0392b);}}}}
+        .suspicious{{{{background: linear-gradient(135deg, #f39c12, #d35400);}}}}
+        
+        .confidence{{{{font-size: 18px; margin-top: 5px; opacity: 0.9;}}}}
+
+        .examples{{{{margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;}}}}
+        .ex-btn{{{{
+            padding: 10px 20px; margin: 5px; background: #9b59b6; color: white; 
+            border: none; border-radius: 20px; cursor: pointer; transition: 0.3s;
+        }}}}
+        .ex-btn:hover{{{{background: #8e44ad;}}}}
+
+        @keyframes fadeIn {{{{ from {{{{opacity: 0;}}}} to {{{{opacity: 1;}}}} }}}}
+        @keyframes slideUp {{{{ from {{{{transform: translateY(20px); opacity: 0;}}}} to {{{{transform: translateY(0); opacity: 1;}}}} }}}}
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🔍 Fake News Detector</h1>
-        <p class="subtitle">AI-Powered • Instant Detection • 95% Accuracy</p>
-        <div class="input-section">
-            <form method="POST">
-                <textarea name="news" placeholder="Paste news headline here...">{input_text}</textarea>
-                <button type="submit" class="analyze-btn">🎯 ANALYZE NOW</button>
-            </form>
-        </div>
+        <p class="subtitle">Enter a headline to check its authenticity</p>
+        
+        <form method="POST">
+            <textarea name="news" placeholder="Paste news content here...">{input_text}</textarea>
+            <button type="submit" class="analyze-btn">🎯 ANALYZE NOW</button>
+        </form>
+
         {result_html}
+
         <div class="examples">
-            <h3 style="margin-bottom:20px;color:#2c3e50">🧪 Quick Test Examples:</h3>
-            <button class="ex-btn" onclick="document.querySelector('textarea').value='Aliens landed in Delhi today! NASA confirms UFO sighting!';">🛸 FAKE NEWS TEST</button>
-            <button class="ex-btn" style="background:#27ae60" onclick="document.querySelector('textarea').value='ISRO successfully launches new communication satellite from Sriharikota.';">🚀 REAL NEWS TEST</button>
+            <p style="margin-bottom:10px; font-weight:bold;">Quick Tests:</p>
+            <button class="ex-btn" onclick="document.querySelector('textarea').value='NASA confirms aliens are living on the Moon secretely!';">🛸 Fake Example</button>
+            <button class="ex-btn" style="background:#27ae60" onclick="document.querySelector('textarea').value='ISRO successfully launched the Gaganyaan mission today.';">🚀 Real Example</button>
         </div>
     </div>
 </body>
@@ -86,5 +147,5 @@ def home():
     return html.format(input_text=input_text, result_html=result_html)
 
 if __name__ == "__main__":
-    # Render uses port 10000 by default
+    # Port 10000 for Render
     app.run(host="0.0.0.0", port=10000)
