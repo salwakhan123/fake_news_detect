@@ -29,6 +29,7 @@ def home():
             res_class = "real" if "REAL" in res_text else "fake" if "FAKE" in res_text else "suspicious"
             result_html = f"<div class='result {res_class}'>{res_text}<div class='confidence'>Confidence: {confidence}%</div></div>"
     
+    # HTML with Newspaper Background and 3D Card
     html = f'''
 <!DOCTYPE html>
 <html>
@@ -40,8 +41,8 @@ def home():
         
         body{{{{
             font-family:'Segoe UI', sans-serif;
-            /* Aapki image ka direct online link background mein */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            /* Newspaper Background with Dark Overlay */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
                               url('https://i.ibb.co/Xz95mF3/fake-news-disinformation.jpg');
             background-size: cover;
             background-position: center;
@@ -54,82 +55,72 @@ def home():
             padding: 20px;
         }}}}
 
-        /* 3D Glassmorphism Effect */
+        /* Attractive 3D Glass Card */
         .glass-card{{{{
-            max-width: 650px;
+            max-width: 750px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.1); 
+            background: rgba(255, 255, 255, 0.07); 
             backdrop-filter: blur(15px);
             border-radius: 30px;
-            padding: 45px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            padding: 50px 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8), 
+                        inset 0 0 15px rgba(255,255,255,0.05);
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.15);
         }}}}
 
         h1{{{{
-            font-size: 3.5em;
+            font-size: 3.8em;
             font-weight: 900;
-            color: #fff;
-            text-shadow: 2px 4px 15px rgba(0,0,0,0.5);
+            color: #ffffff;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
             margin-bottom: 5px;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
         }}}}
         
         .tagline{{{{
-            color: #ecf0f1;
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            color: #bdc3c7;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-weight: 500;
         }}}}
 
         textarea{{{{
-            width: 100%; height: 160px; padding: 20px; border: none;
-            border-radius: 20px; font-size: 16px; margin-bottom: 20px;
+            width: 100%; height: 160px; padding: 25px; border: none;
+            border-radius: 20px; font-size: 18px; margin-bottom: 25px;
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: inset 2px 2px 10px rgba(0,0,0,0.1);
-            color: #2c3e50;
+            color: #1a1a1a;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            resize: none;
         }}}}
 
         .scan-btn{{{{
-            width: 100%; padding: 18px; 
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            color: white; border: none; border-radius: 15px; font-size: 1.2em;
-            font-weight: bold; cursor: pointer; transition: 0.3s;
+            width: 100%; padding: 20px; 
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: white; border: none; border-radius: 15px; font-size: 1.3em;
+            font-weight: 800; cursor: pointer; transition: 0.4s;
             text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(0,114,255,0.3);
+            letter-spacing: 1px;
+            box-shadow: 0 15px 30px rgba(41,128,185,0.4);
         }}}}
-        .scan-btn:hover{{{{transform: translateY(-3px); box-shadow: 0 15px 25px rgba(0,114,255,0.4);}}}}
+        .scan-btn:hover{{{{transform: translateY(-5px); box-shadow: 0 20px 40px rgba(41,128,185,0.6);}}}}
 
-        .result{{{{margin-top: 30px; padding: 20px; border-radius: 15px; color: white; font-weight: bold; font-size: 26px;}}}}
-        .real{{{{background: linear-gradient(135deg, #2ecc71, #27ae60);}}}} 
-        .fake{{{{background: linear-gradient(135deg, #e74c3c, #c0392b);}}}} 
+        .result{{{{margin-top: 35px; padding: 30px; border-radius: 20px; color: white; font-weight: bold; font-size: 30px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);}}}}
+        .real{{{{background: linear-gradient(45deg, #27ae60, #2ecc71);}}}} 
+        .fake{{{{background: linear-gradient(45deg, #c0392b, #e74c3c);}}}} 
         .suspicious{{{{background: #f39c12;}}}}
-        .confidence{{{{font-size: 16px; margin-top: 5px; font-weight: normal;}}}}
-
-        .examples{{{{margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;}}}}
-        .ex-btn{{{{
-            padding: 10px 20px; margin: 5px; border: none; border-radius: 25px; 
-            cursor: pointer; font-weight: bold; color: white; background: rgba(255,255,255,0.2);
-            transition: 0.3s;
-        }}}}
-        .ex-btn:hover{{{{background: rgba(255,255,255,0.3);}}}}
+        .confidence{{{{font-size: 18px; margin-top: 8px; opacity: 0.9; font-weight: normal;}}}}
     </style>
 </head>
 <body>
     <div class="glass-card">
-        <h1>Truth Lens</h1>
-        <p class="tagline">Advanced News Verification • 95% Accuracy</p>
+        <h1>Truth Lens AI</h1>
+        <p class="tagline">AI-Powered Verification • Instant Analysis • 95% Accuracy</p>
         <form method="POST">
-            <textarea name="news" placeholder="Paste news content here for 3D analysis...">{input_text}</textarea>
-            <button type="submit" class="scan-btn">Analyze Now</button>
+            <textarea name="news" placeholder="Paste news content here...">{input_text}</textarea>
+            <button type="submit" class="scan-btn">🎯 Start Analysis</button>
         </form>
         {result_html}
-        <div class="examples">
-            <button class="ex-btn" onclick="document.querySelector('textarea').value='NASA found aliens on Mars today!';">Fake News Test</button>
-            <button class="ex-btn" onclick="document.querySelector('textarea').value='Official government report confirms GDP growth.';">Real News Test</button>
-        </div>
     </div>
 </body>
 </html>
