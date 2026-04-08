@@ -1,32 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Truth Lens AI</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🔍 Truth Lens AI</h1>
-            <p>AI-Powered Verification • Instant Analysis • 95% Accuracy</p>
-        </div>
-
-        <form action="/predict" method="POST">
-            <div class="input-area">
-                <textarea name="news" placeholder="Paste news content here..." required></textarea>
-            </div>
+        <h1>Truth Lens AI</h1>
+        <p>AI-Powered Verification • Instant Analysis • 95% Accuracy</p>
+        
+        <form action="/predict" method="post">
+            <textarea name="news" placeholder="Paste news content here..." required></textarea>
             <button type="submit" class="analyze-btn">🎯 START ANALYSIS</button>
         </form>
-
-        <div class="quick-test">
-            <p>🧪 Quick Test Examples:</p>
-            <div class="btn-group">
-                <button type="button" class="test-btn fake">🟣 FAKE NEWS TEST</button>
-                <button type="button" class="test-btn real">🟢 REAL NEWS TEST</button>
-            </div>
-        </div>
     </div>
 </body>
 </html>
