@@ -1,90 +1,61 @@
 body {
-    /* Background setup */
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('../images/background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    /* Background path agar static folder mein hai */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('background.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
 }
 
 .container {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.1); /* Glass effect */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 50px;
     border-radius: 30px;
-    padding: 40px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     text-align: center;
+    width: 450px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 h1 {
-    color: #2c3e50;
-    font-size: 2.5rem;
-    margin: 0;
+    color: white;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
 }
 
 p {
-    color: #7f8c8d;
+    color: #ccc;
     font-size: 0.9rem;
-    margin-bottom: 20px;
-}
-
-.input-area {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 textarea {
     width: 100%;
-    height: 120px;
+    height: 150px;
+    border-radius: 20px;
     border: none;
-    background: transparent;
+    padding: 20px;
     font-size: 1rem;
-    outline: none;
-    resize: none;
+    background: white;
+    box-sizing: border-box;
 }
 
 .analyze-btn {
     width: 100%;
-    padding: 15px;
     background: #3498db;
     color: white;
     border: none;
+    padding: 15px;
+    margin-top: 25px;
     border-radius: 15px;
-    font-weight: bold;
     font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-    transition: 0.3s;
-}
-
-.analyze-btn:hover {
-    background: #2980b9;
-    transform: scale(1.02);
-}
-
-.btn-group {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.test-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    color: white;
-    font-size: 0.8rem;
     font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
 }
-
-.fake { background: #9b59b6; }
-.real { background: #2ecc71; }
