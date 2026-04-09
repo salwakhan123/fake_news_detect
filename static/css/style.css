@@ -12,16 +12,14 @@ body {
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.12); /* Dark Glass Effect */
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 35px;
-    border-radius: 25px;
+    background: white; /* Bilkul safed background */
+    padding: 40px; 
+    border-radius: 20px; 
     text-align: center;
-    width: 90%;
-    max-width: 460px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    color: white;
+    width: 90%; 
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Halka shadow */
+    color: #2c3e50; /* Text ka color dark (dark blue/black) */
 }
 
 h1 { font-size: 2.3rem; margin-bottom: 5px; font-weight: 800; }
