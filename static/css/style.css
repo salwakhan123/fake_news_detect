@@ -5,7 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Is link se background 100% load hoga */
+    /* Direct Raw Link for Background */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                 url('https://raw.githubusercontent.com/salwakhan123/fake_news_detect/main/static/css/background.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -13,19 +13,23 @@ body {
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.95); /* Purana solid white look glass touch ke sath */
+    background: rgba(255, 255, 255, 0.95); /* Solid white look but slightly soft */
     padding: 40px;
     border-radius: 30px;
     text-align: center;
     width: 90%;
-    max-width: 450px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    max-width: 500px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
 }
 
 h1 {
     color: #2c3e50;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .subtitle {
@@ -36,12 +40,12 @@ h1 {
 
 textarea {
     width: 100%;
-    height: 130px;
+    height: 120px;
     border-radius: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #dfe6e9;
     padding: 15px;
     font-size: 1rem;
-    background: #fdfdfd;
+    background: #f8f9fa;
     box-sizing: border-box;
     resize: none;
     outline: none;
@@ -58,7 +62,7 @@ textarea {
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    transition: 0.3s;
 }
 
 .test-section {
@@ -68,9 +72,8 @@ textarea {
 }
 
 .test-title {
-    font-size: 0.85rem;
-    color: #34495e;
-    font-weight: bold;
+    font-size: 0.9rem;
+    color: #2d3436;
     margin-bottom: 15px;
 }
 
@@ -81,14 +84,13 @@ textarea {
 }
 
 .test-btn {
-    padding: 10px 15px;
-    border-radius: 25px;
+    padding: 10px 20px;
+    border-radius: 20px;
     border: none;
     color: white;
     font-weight: bold;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    flex: 1;
 }
 
 .fake-btn { background: #9b59b6; }
