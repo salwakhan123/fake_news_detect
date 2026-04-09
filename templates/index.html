@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truth Lens AI</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Truth Lens AI</h1>
-        <p>AI-Powered Verification • Instant Analysis • 95% Accuracy</p>
-        
-        <form action="/predict" method="post">
-            <textarea name="news" placeholder="Paste news content here..." required></textarea>
-            <button type="submit" class="analyze-btn">🎯 START ANALYSIS</button>
-        </form>
+<div class="container">
+    <h1>🔍 Fake News Detector</h1>
+    <p class="subtitle">AI-Powered • Instant Detection • 95% Accuracy</p>
+    
+    <form action="/predict" method="post">
+        <textarea name="text" placeholder="Paste news headline here..."></textarea>
+        <button type="submit" class="analyze-btn">🎯 ANALYZE NOW</button>
+    </form>
+
+    <div class="test-section">
+        <p class="test-title">🧪 Quick Test Examples:</p>
+        <div class="btn-group">
+            <button class="test-btn fake-btn">🧪 FAKE NEWS TEST</button>
+            <button class="test-btn real-btn">🚀 REAL NEWS TEST</button>
+        </div>
     </div>
-</body>
-</html>
+</div>
