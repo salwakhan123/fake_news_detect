@@ -1,17 +1,28 @@
-<div class="container">
-    <h1>🔍 Fake News Detector</h1>
-    <p class="subtitle">AI-Powered • Instant Detection • 95% Accuracy</p>
-    
-    <form action="/predict" method="post">
-        <textarea name="text" placeholder="Paste news headline here..."></textarea>
-        <button type="submit" class="analyze-btn">🎯 ANALYZE NOW</button>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Fake News Detector</h1>
+        <p class="subtitle">AI-Powered • Instant Detection • 95% Accuracy</p>
+        
+        <form action="/predict" method="post">
+            <textarea name="text" placeholder="Paste news headline here..." required></textarea>
+            <button type="submit" class="analyze-btn">🎯 ANALYZE NOW</button>
+        </form>
 
-    <div class="test-section">
-        <p style="color: #7f8c8d; font-weight: bold; font-size: 0.9rem;">🧪 Quick Test Examples:</p>
-        <div class="btn-group">
-            <button type="button" class="test-btn fake-btn">🧪 FAKE NEWS TEST</button>
-            <button type="button" class="test-btn real-btn">🚀 REAL NEWS TEST</button>
+        <div class="test-section">
+            <p style="color: #7f8c8d; font-weight: bold; font-size: 0.9rem;">🧪 Quick Test Examples:</p>
+            <div class="btn-group">
+                <button type="button" class="test-btn fake-btn">🧪 FAKE NEWS TEST</button>
+                <button type="button" class="test-btn real-btn">🚀 REAL NEWS TEST</button>
+            </div>
         </div>
     </div>
-</div>
+</body>
+</html>
